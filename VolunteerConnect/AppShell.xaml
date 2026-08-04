@@ -6,9 +6,37 @@
     xmlns:local="clr-namespace:VolunteerConnect"
     Title="VolunteerConnect">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Bottom Tab Navigation -->
+    <TabBar>
+
+        <!-- Home -->
+        <ShellContent
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <!-- Opportunities -->
+        <ShellContent
+            Title="Opportunities"
+            Icon="list.png"
+            ContentTemplate="{DataTemplate local:OpportunitiesPage}"
+            Route="OpportunitiesPage" />
+
+        <!-- My Registrations -->
+        <ShellContent
+            Title="My Registrations"
+            Icon="user.png"
+            ContentTemplate="{DataTemplate local:MyRegistrationsPage}"
+            Route="MyRegistrationsPage" />
+
+        <!-- Privacy -->
+        <ShellContent
+            Title="Privacy"
+            Icon="info.png"
+            ContentTemplate="{DataTemplate local:PrivacyPage}"
+            Route="PrivacyPage" />
+
+    </TabBar>
 
 </Shell>
