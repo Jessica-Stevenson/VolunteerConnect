@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VolunteerConnect.Views.HomePage"
-             Title="HomePage">
-</Window>
+             Title="Home">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25"
+                             Spacing="20">
+
+            <!-- Application Name -->
+            <Label Text="VolunteerConnect"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- App Explanation -->
+            <Label Text="VolunteerConnect helps you discover and register for local volunteer opportunities. Find causes you care about and make a difference in your community."
+                   FontSize="16"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Featured Opportunity -->
+            <Border StrokeShape="RoundRectangle 15"
+                    Padding="20">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Featured Volunteer Opportunity"
+                           FontSize="22"
+                           FontAttributes="Bold" />
+
+                    <Label Text="Beach Cleanup Event"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+
+                    <Label Text="Help protect our coastline by joining a community beach cleanup."
+                           FontSize="15" />
+
+                    <Label Text="Category: Environment" />
+
+                    <Label Text="Date: Saturday 15 August 2026" />
+
+                    <Label Text="Location: Auckland Beach Reserve" />
+
+                    <Label Text="Available Places: 12" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+
+            <!-- Available Opportunities Count -->
+            <Label Text="Available Volunteer Opportunities: 8"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+
+            <!-- Navigation Button -->
+            <Button Text="Browse Opportunities"
+                    Clicked="OnBrowseOpportunitiesClicked"
+                    HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

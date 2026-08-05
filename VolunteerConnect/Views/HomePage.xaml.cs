@@ -1,19 +1,15 @@
 namespace VolunteerConnect.Views;
 
-public partial class HomePage : Window
+public partial class HomePage : ContentPage
 {
-	public HomePage()
-	{
-		InitializeComponent();
-		Page = new ContentPage()
-		{
-			Content = new VerticalStackLayout
-			{
-				Children = {
-					new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-					}
-				}
-			}
-		};
-	}
+    public HomePage()
+    {
+        InitializeComponent();
+    }
+
+
+    private async void OnBrowseOpportunitiesClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(OpportunitiesPage));
+    }
 }
