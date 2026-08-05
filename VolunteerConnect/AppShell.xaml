@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:VolunteerConnect"
+    xmlns:Views="clr-namespace:VolunteerConnect.Views"
     Title="VolunteerConnect">
 
     <!-- Bottom Tab Navigation -->
@@ -13,29 +14,29 @@
         <ShellContent
             Title="Home"
             Icon="home.png"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+            ContentTemplate="{DataTemplate Views:HomePage}"
+            Route="HomePage" />
 
         <!-- Opportunities -->
         <ShellContent
             Title="Opportunities"
             Icon="list.png"
-            ContentTemplate="{DataTemplate local:OpportunitiesPage}"
+            ContentTemplate="{DataTemplate Views:OpportunitiesPage}"
             Route="OpportunitiesPage" />
 
         <!-- My Registrations -->
         <ShellContent
             Title="My Registrations"
             Icon="user.png"
-            ContentTemplate="{DataTemplate local:MyRegistrationsPage}"
+            ContentTemplate="{DataTemplate Views:MyRegistrationsPage}"
             Route="MyRegistrationsPage" />
 
         <!-- Privacy -->
         <ShellContent
             Title="Privacy"
             Icon="info.png"
-            ContentTemplate="{DataTemplate local:PrivacyPage}"
-            Route="PrivacyPage" />
+            ContentTemplate="{DataTemplate Views:PrivacyInformationPage}"
+            Route="PrivacyInformationPage" />
 
     </TabBar>
 
