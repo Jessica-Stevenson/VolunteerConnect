@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using VolunteerConnect.Services;
+using VolunteerConnect.Views;
 
 namespace VolunteerConnect
 {
@@ -17,7 +18,10 @@ namespace VolunteerConnect
                 });
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "volunteer.db3");
 
-            builder.Services.AddSingleton(s => new DatabaseService(dbPath));
+            builder.Services.AddSingleton<DatabaseService>();
+
+            builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddSingleton<OpportunitiesPage>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -5,66 +5,120 @@ namespace VolunteerConnect.Services
 {
     public class DatabaseService
     {
-        private readonly SQLiteAsyncConnection _database;
+        private SQLiteAsyncConnection? _database;
 
-        public DatabaseService(string dbPath)
+        private async Task Init()
         {
+            if (_database != null)
+                return;
+
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "volunteer.db3");
+
             _database = new SQLiteAsyncConnection(dbPath);
 
-            _database.CreateTableAsync<VolunteerOpportunity>().Wait();
-            _database.CreateTableAsync<VolunteerRegistration>().Wait();
+            await _database.CreateTableAsync<VolunteerOpportunity>();
+            await _database.CreateTableAsync<VolunteerRegistration>();
+
+            await SeedData();
         }
 
-        //Oppturnities
-        public Task<List<VolunteerOpportunity>> GetOpportunitiesAsync()
+        private async Task SeedData()
         {
-            return _database.Table<VolunteerOpportunity>().ToListAsync();
+            var count = await _database.Table<VolunteerOpportunity>().CountAsync();
+
+            if (count > 0)
+                return;
+
+            var opportunities = new List<VolunteerOpportunity>
+            {
+                new VolunteerOpportunity
+                {
+                    Title = "Beach Cleanup",
+                    Category = "Environment",
+                    Date = DateTime.Today.AddDays(3),
+                    Time = "9:00 AM",
+                    Location = "Takapuna Beach",
+                    Description = "Help clean up the beach and protect marine life.",
+                    Requirements = "Bring gloves and sunscreen",
+                    AvailablePlaces = 10,
+                    ImageName = "beach.png",
+                    IsAvailable = true
+                },
+                new VolunteerOpportunity
+                {
+                    Title = "Animal Shelter Helper",
+                    Category = "Animals",
+                    Date = DateTime.Today.AddDays(5),
+                    Time = "1:00 PM",
+                    Location = "Auckland Shelter",
+                    Description = "Assist with feeding and caring for animals.",
+                    Requirements = "Must be comfortable with animals",
+                    AvailablePlaces = 5,
+                    ImageName = "animals.png",
+                    IsAvailable = true
+                }
+            };
+
+            await _database.InsertAllAsync(opportunities);
+        }
+        public async Task<List<VolunteerOpportunity>> GetOpportunitiesAsync()
+        {
+            await Init();
+            return await _database.Table<VolunteerOpportunity>().ToListAsync();
         }
 
-        public Task<VolunteerOpportunity> GetOpportunityAsync(int id)
+        public async Task<VolunteerOpportunity> GetOpportunityAsync(int id)
         {
-            return _database.Table<VolunteerOpportunity>()
-                            .Where(o => o.Id == id)
-                            .FirstOrDefaultAsync();
+            await Init();
+            return await _database.Table<VolunteerOpportunity>()
+                                  .Where(o => o.Id == id)
+                                  .FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveOpportunityAsync(VolunteerOpportunity opportunity)
+        public async Task<int> SaveOpportunityAsync(VolunteerOpportunity opportunity)
         {
+            await Init();
+
             if (opportunity.Id != 0)
-                return _database.UpdateAsync(opportunity);
+                return await _database.UpdateAsync(opportunity);
             else
-                return _database.InsertAsync(opportunity);
+                return await _database.InsertAsync(opportunity);
         }
 
-        public Task<int> DeleteOpportunityAsync(VolunteerOpportunity opportunity)
+        public async Task<int> DeleteOpportunityAsync(VolunteerOpportunity opportunity)
         {
-            return _database.DeleteAsync(opportunity);
+            await Init();
+            return await _database.DeleteAsync(opportunity);
         }
 
-        //Registertations
-        public Task<List<VolunteerRegistration>> GetRegistrationsAsync()
+        public async Task<List<VolunteerRegistration>> GetRegistrationsAsync()
         {
-            return _database.Table<VolunteerRegistration>().ToListAsync();
+            await Init();
+            return await _database.Table<VolunteerRegistration>().ToListAsync();
         }
 
-        public Task<List<VolunteerRegistration>> GetRegistrationsByOpportunityAsync(int opportunityId)
+        public async Task<List<VolunteerRegistration>> GetRegistrationsByOpportunityAsync(int opportunityId)
         {
-            return _database.Table<VolunteerRegistration>()
-                            .Where(r => r.OpportunityId == opportunityId)
-                            .ToListAsync();
+            await Init();
+            return await _database.Table<VolunteerRegistration>()
+                                  .Where(r => r.OpportunityId == opportunityId)
+                                  .ToListAsync();
         }
 
-        public Task<int> SaveRegistrationAsync(VolunteerRegistration registration)
+        public async Task<int> SaveRegistrationAsync(VolunteerRegistration registration)
         {
+            await Init();
+
             if (registration.Id != 0)
-                return _database.UpdateAsync(registration);
+                return await _database.UpdateAsync(registration);
             else
-                return _database.InsertAsync(registration);
+                return await _database.InsertAsync(registration);
         }
 
-        public Task<int> DeleteRegistrationAsync(VolunteerRegistration registration)
+        public async Task<int> DeleteRegistrationAsync(VolunteerRegistration registration)
         {
-            return _database.DeleteAsync(registration);
+            await Init();
+            return await _database.DeleteAsync(registration);
         }
     }
 }
