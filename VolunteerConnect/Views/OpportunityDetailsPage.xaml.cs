@@ -1,19 +1,35 @@
+using VolunteerConnect.Models;
+
 namespace VolunteerConnect.Views;
 
-public partial class OpportunityDetailsPage : Window
+
+[QueryProperty(nameof(Opportunity), "Opportunity")]
+
+public partial class OpportunityDetailsPage : ContentPage
 {
-	public OpportunityDetailsPage()
-	{
-		InitializeComponent();
-		Page = new ContentPage()
-		{
-			Content = new VerticalStackLayout
-			{
-				Children = {
-					new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-					}
-				}
-			}
-		};
-	}
+
+    public VolunteerOpportunity Opportunity
+    {
+        set
+        {
+            BindingContext = value;
+        }
+    }
+
+
+    public OpportunityDetailsPage()
+    {
+        InitializeComponent();
+    }
+
+
+
+    private async void OnRegisterClicked(object sender, EventArgs e)
+    {
+        await DisplayAlert(
+            "Registration",
+            "Your interest has been recorded!",
+            "OK");
+    }
+
 }

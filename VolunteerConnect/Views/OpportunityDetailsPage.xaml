@@ -1,6 +1,54 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.OpportunityDetailsPage"
-             Title="OpportunityDetailsPage">
-</Window>
+<ContentPage
+xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+x:Class="VolunteerConnect.Views.OpportunityDetailsPage">
+
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="20"
+                     Spacing="15">
+
+
+            <Label Text="{Binding Title}"
+       Style="{StaticResource PageTitle}"/>
+
+
+            <Label Text="{Binding Category}"/>
+
+            <Label Text="{Binding Date}"/>
+
+            <Label Text="{Binding Time}"/>
+
+            <Label Text="{Binding Location}"/>
+
+
+            <Label Text="Description"
+       FontAttributes="Bold"/>
+
+
+            <Label Text="{Binding Description}"/>
+
+
+            <Label Text="Requirements"
+       FontAttributes="Bold"/>
+
+
+            <Label Text="{Binding Requirements}"/>
+
+
+            <Label Text="{Binding AvailablePlaces,
+StringFormat='Available Places: {0}'}"/>
+
+
+            <Button Text="Register Interest"
+        Style="{StaticResource PrimaryButton}"
+        Clicked="OnRegisterClicked"/>
+
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+
+</ContentPage>
