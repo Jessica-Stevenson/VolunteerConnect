@@ -20,8 +20,11 @@ namespace VolunteerConnect
 
             builder.Services.AddSingleton<DatabaseService>();
 
+
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<OpportunitiesPage>();
+            builder.Services.AddSingleton<MyRegistrationsPage>();
+
             builder.Services.AddTransient<OpportunityDetailsPage>();
             builder.Services.AddTransient<RegistrationPage>();
 

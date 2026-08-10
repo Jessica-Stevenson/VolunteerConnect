@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.MyRegistrationsPage"
-             Title="MyRegistrationsPage">
-</Window>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VolunteerConnect.Views.MyRegistrationsPage"
+    Title="My Registrations">
+
+    <Grid Padding="20">
+
+        <CollectionView
+            x:Name="RegistrationsCollectionView">
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Spacing="10">
+
+                    <Label
+                        Text="No registrations found."
+                        FontSize="20"
+                        HorizontalOptions="Center"/>
+
+                    <Label
+                        Text="Your volunteer registrations will appear here."
+                        HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        Padding="15"
+                        Margin="0,0,0,15"
+                        StrokeShape="RoundRectangle 15">
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Label
+                                Text="{Binding OpportunityTitle}"
+                                FontSize="20"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                Text="{Binding PreferredName,
+                                       StringFormat='Name: {0}'}"/>
+
+                            <Label
+                                Text="{Binding ContactDetail,
+                                       StringFormat='Contact: {0}'}"/>
+
+                            <Label
+                                Text="{Binding Availability,
+                                       StringFormat='Availability: {0}'}"/>
+
+                            <Label
+                                Text="{Binding Notes,
+                                       StringFormat='Notes: {0}'}"/>
+
+                            <Label
+                                Text="{Binding RegistrationDate,
+                                       StringFormat='Registered: {0:dd MMMM yyyy}'}"/>
+
+
+                            <HorizontalStackLayout
+                                Spacing="10">
+
+                                <Button
+                                    Text="Edit"
+                                    Clicked="OnEditClicked"
+                                    HorizontalOptions="FillAndExpand"/>
+
+                                <Button
+                                    Text="Delete"
+                                    Clicked="OnDeleteClicked"
+                                    HorizontalOptions="FillAndExpand"/>
+
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
