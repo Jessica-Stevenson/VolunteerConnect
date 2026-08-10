@@ -13,4 +13,4 @@ namespace VolunteerConnect
             Routing.RegisterRoute(nameof(RegistrationPage), typeof(RegistrationPage));
         }
     }
-}
+}   

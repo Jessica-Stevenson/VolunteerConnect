@@ -1,100 +1,91 @@
 using System.Collections.ObjectModel;
 using VolunteerConnect.Models;
+using VolunteerConnect.Services;
 
 namespace VolunteerConnect.Views;
 
-
 public partial class OpportunitiesPage : ContentPage
 {
+    private readonly DatabaseService _database;
 
-    ObservableCollection<VolunteerOpportunity> Opportunities { get; set; }
+    private List<VolunteerOpportunity> allOpportunities = new();
+
+    public ObservableCollection<VolunteerOpportunity> Opportunities { get; set; } = new();
 
 
-    List<VolunteerOpportunity> allOpportunities;
-
-
-    public OpportunitiesPage()
+    public OpportunitiesPage(DatabaseService database)
     {
         InitializeComponent();
 
-
-        allOpportunities = new()
-        {
-
-            new VolunteerOpportunity
-            {
-                Id=1,
-                Title="Beach Cleanup",
-                Category="Environment",
-                Date = new DateTime(2026, 8, 15),
-                Time="10:00 AM",
-                Location="Auckland Beach",
-                Description="Help clean local beaches.",
-                Requirements="Bring gloves and water.",
-                AvailablePlaces=12,
-                IsAvailable=true,
-                ImageName="beach.png"
-            },
-
-
-            new VolunteerOpportunity
-            {
-                Id=2,
-                Title="Animal Shelter Helper",
-                Category="Animals",
-                Date = new DateTime(2026, 8, 20),
-                Time="9:00 AM",
-                Location="Auckland Shelter",
-                Description="Assist with animal care.",
-                Requirements="Must enjoy working with animals.",
-                AvailablePlaces=5,
-                IsAvailable=true,
-                ImageName="animal.png"
-            }
-
-        };
-
-
-        Opportunities = new ObservableCollection<VolunteerOpportunity>(
-            allOpportunities);
-
+        _database = database;
 
         BindingContext = this;
-
     }
 
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        await LoadOpportunities();
+    }
+
+
+    private async Task LoadOpportunities()
+    {
+        allOpportunities = await _database.GetOpportunitiesAsync();
+
+        Opportunities.Clear();
+
+        foreach (var opportunity in allOpportunities)
+        {
+            Opportunities.Add(opportunity);
+        }
+    }
 
 
     private void OnSearchChanged(object sender, TextChangedEventArgs e)
     {
+        string searchText = e.NewTextValue ?? "";
 
         Opportunities.Clear();
 
 
-        foreach (var item in allOpportunities
-            .Where(x => x.Title
-            .Contains(e.NewTextValue,
-            StringComparison.OrdinalIgnoreCase)))
+        foreach (var item in allOpportunities.Where(x =>
+            x.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+            x.Category.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
         {
             Opportunities.Add(item);
         }
-
     }
-
-
 
     private void OnCategoryChanged(object sender, EventArgs e)
     {
-
         var picker = (Picker)sender;
 
 
-        if (picker.SelectedItem?.ToString() == "All")
+        string category = picker.SelectedItem?.ToString();
+
+
+        Opportunities.Clear();
+
+
+        if (category == "All" || string.IsNullOrEmpty(category))
         {
-            Opportunities =
-            new ObservableCollection<VolunteerOpportunity>(allOpportunities);
+            foreach (var item in allOpportunities)
+            {
+                Opportunities.Add(item);
+            }
+
+            return;
         }
 
+
+        foreach (var item in allOpportunities.Where(x =>
+            x.Category == category))
+        {
+            Opportunities.Add(item);
+        }
     }
 
 }

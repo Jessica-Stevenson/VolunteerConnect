@@ -13,15 +13,15 @@
 
 
         <SearchBar
-    x:Name="SearchBar"
-    Placeholder="Search opportunities..."
-    TextChanged="OnSearchChanged"/>
+            x:Name="SearchBar"
+            Placeholder="Search opportunities..."
+            TextChanged="OnSearchChanged"/>
 
 
 
         <Picker Grid.Row="1"
-        Title="Filter by Category"
-        SelectedIndexChanged="OnCategoryChanged">
+            Title="Filter by Category"
+            SelectedIndexChanged="OnCategoryChanged">
 
             <Picker.Items>
 
@@ -36,8 +36,9 @@
 
 
 
-        <CollectionView Grid.Row="2"
-                ItemsSource="{Binding Opportunities}">
+        <CollectionView 
+            Grid.Row="2"
+            ItemsSource="{Binding Opportunities}">
 
 
             <CollectionView.ItemTemplate>

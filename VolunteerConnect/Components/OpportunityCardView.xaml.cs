@@ -17,11 +17,7 @@ public partial class OpportunityCardView : ContentView
         if (BindingContext is VolunteerOpportunity opportunity)
         {
             await Shell.Current.GoToAsync(
-                nameof(OpportunityDetailsPage),
-                new Dictionary<string, object>
-                {
-                    {"Opportunity", opportunity}
-                });
+                $"{nameof(OpportunityDetailsPage)}?id={opportunity.Id}");
         }
     }
 

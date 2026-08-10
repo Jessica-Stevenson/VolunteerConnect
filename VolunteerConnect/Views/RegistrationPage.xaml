@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.RegistrationPage"
-             Title="RegistrationPage">
-</Window>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VolunteerConnect.Views.RegistrationPage"
+    Title="Register Interest">
+
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+
+            <Label
+                Text="Register Your Interest"
+                FontSize="24"
+                FontAttributes="Bold"/>
+
+
+            <Label
+                x:Name="OpportunityLabel"
+                FontSize="18"/>
+
+
+            <Entry
+                x:Name="PreferredNameEntry"
+                Placeholder="Preferred Name"/>
+
+
+            <Entry
+                x:Name="ContactEntry"
+                Placeholder="Email Address or Phone Number"/>
+
+
+            <Entry
+                x:Name="AvailabilityEntry"
+                Placeholder="Availability"/>
+
+
+            <Editor
+                x:Name="NotesEditor"
+                Placeholder="Optional Note"
+                HeightRequest="100"/>
+
+
+            <HorizontalStackLayout>
+
+                <CheckBox
+                    x:Name="ConsentCheckBox"/>
+
+                <Label
+                    Text="I agree to the privacy policy"
+                    VerticalOptions="Center"/>
+
+            </HorizontalStackLayout>
+
+
+            <Button
+                Text="Submit Registration"
+                Clicked="OnSubmitClicked"/>
+
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

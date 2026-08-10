@@ -120,5 +120,16 @@ namespace VolunteerConnect.Services
             await Init();
             return await _database.DeleteAsync(registration);
         }
+
+        public async Task<VolunteerRegistration> GetRegistrationAsync(int id)
+        {
+            await Init();
+
+            return await _database.Table<VolunteerRegistration>()
+                                  .Where(r => r.Id == id)
+                                  .FirstOrDefaultAsync();
+        }
     }
+
+
 }

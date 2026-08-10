@@ -22,6 +22,9 @@ namespace VolunteerConnect
 
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<OpportunitiesPage>();
+            builder.Services.AddTransient<OpportunityDetailsPage>();
+            builder.Services.AddTransient<RegistrationPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
