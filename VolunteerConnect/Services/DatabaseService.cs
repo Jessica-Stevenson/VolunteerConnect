@@ -41,7 +41,7 @@ namespace VolunteerConnect.Services
                     Description = "Help clean up the beach and protect marine life.",
                     Requirements = "Bring gloves and sunscreen",
                     AvailablePlaces = 10,
-                    ImageName = "beach.png",
+                    ImageName = "beach.jpg",
                     IsAvailable = true
                 },
                 new VolunteerOpportunity
@@ -54,7 +54,7 @@ namespace VolunteerConnect.Services
                     Description = "Assist with feeding and caring for animals.",
                     Requirements = "Must be comfortable with animals",
                     AvailablePlaces = 5,
-                    ImageName = "animals.png",
+                    ImageName = "animals.jpg",
                     IsAvailable = true
                 }
             };

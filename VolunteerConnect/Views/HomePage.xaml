@@ -8,18 +8,15 @@
         <VerticalStackLayout Padding="25"
                              Spacing="20">
 
-            <!-- Application Name -->
             <Label Text="VolunteerConnect"
                    FontSize="32"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <!-- App Explanation -->
             <Label Text="VolunteerConnect helps you discover and register for local volunteer opportunities. Find causes you care about and make a difference in your community."
                    FontSize="16"
                    HorizontalTextAlignment="Center" />
 
-            <!-- Featured Opportunity -->
             <Border StrokeShape="RoundRectangle 15"
                     Padding="20">
 
@@ -29,34 +26,34 @@
                            FontSize="22"
                            FontAttributes="Bold" />
 
-                    <Label Text="Beach Cleanup Event"
+                    <Image Source="{Binding ImageName}"
+                           HeightRequest="180"
+                           Aspect="AspectFill" />
+
+                    <Label Text="{Binding Title}"
                            FontSize="20"
                            FontAttributes="Bold" />
 
-                    <Label Text="Help protect our coastline by joining a community beach cleanup."
+                    <Label Text="{Binding Description}"
                            FontSize="15" />
 
-                    <Label Text="Category: Environment" />
+                    <Label Text="{Binding Category, StringFormat='Category: {0}'}" />
 
-                    <Label Text="Date: Saturday 15 August 2026" />
+                    <Label Text="{Binding Date, StringFormat='Date: {0:dddd d MMMM yyyy}'}" />
 
-                    <Label Text="Location: Auckland Beach Reserve" />
+                    <Label Text="{Binding Location, StringFormat='Location: {0}'}" />
 
-                    <Label Text="Available Places: 12" />
+                    <Label Text="{Binding AvailablePlaces, StringFormat='Available Places: {0}'}" />
 
                 </VerticalStackLayout>
 
             </Border>
 
-
-            <!-- Available Opportunities Count -->
-            <Label Text="Available Volunteer Opportunities: 8"
+            <Label x:Name="OpportunityCountLabel"
                    FontSize="18"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-
-            <!-- Navigation Button -->
             <Button Text="Browse Opportunities"
                     Clicked="OnBrowseOpportunitiesClicked"
                     HorizontalOptions="Center" />

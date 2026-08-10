@@ -19,14 +19,21 @@ public partial class HomePage : ContentPage
 
         var opportunities = await _database.GetOpportunitiesAsync();
 
-        foreach (var opp in opportunities)
+        var featured = opportunities.FirstOrDefault(o => o.IsAvailable);
+
+        if (featured != null)
         {
-            System.Diagnostics.Debug.WriteLine($"Loaded: {opp.Title}");
+            BindingContext = featured;
         }
+
+        var availableCount = opportunities.Count(o => o.IsAvailable);
+
+        OpportunityCountLabel.Text =
+            $"Available Volunteer Opportunities: {availableCount}";
     }
 
     private async void OnBrowseOpportunitiesClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(OpportunitiesPage));
+        await Shell.Current.GoToAsync("//OpportunitiesPage");
     }
 }
