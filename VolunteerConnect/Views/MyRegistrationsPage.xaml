@@ -21,11 +21,11 @@
                     <Label
                         Text="No registrations found."
                         FontSize="20"
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="Center" />
 
                     <Label
                         Text="Your volunteer registrations will appear here."
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="Center" />
 
                 </VerticalStackLayout>
 
@@ -37,52 +37,107 @@
                 <DataTemplate>
 
                     <Border
-                        Padding="15"
-                        Margin="0,0,0,15"
+                        Padding="0"
+                        Margin="0,0,0,20"
                         StrokeShape="RoundRectangle 15">
 
-                        <VerticalStackLayout Spacing="8">
+                        <VerticalStackLayout
+                            Spacing="0">
 
-                            <Label
-                                Text="{Binding OpportunityTitle}"
-                                FontSize="20"
-                                FontAttributes="Bold"/>
+                            <!-- Opportunity Image -->
 
-                            <Label
-                                Text="{Binding PreferredName,
-                                       StringFormat='Name: {0}'}"/>
-
-                            <Label
-                                Text="{Binding ContactDetail,
-                                       StringFormat='Contact: {0}'}"/>
-
-                            <Label
-                                Text="{Binding Availability,
-                                       StringFormat='Availability: {0}'}"/>
-
-                            <Label
-                                Text="{Binding Notes,
-                                       StringFormat='Notes: {0}'}"/>
-
-                            <Label
-                                Text="{Binding RegistrationDate,
-                                       StringFormat='Registered: {0:dd MMMM yyyy}'}"/>
+                            <Image
+                                Source="{Binding Opportunity.ImageName}"
+                                HeightRequest="180"
+                                Aspect="AspectFill" />
 
 
-                            <HorizontalStackLayout
-                                Spacing="10">
+                            <!-- Opportunity Details -->
 
-                                <Button
-                                    Text="Edit"
-                                    Clicked="OnEditClicked"
-                                    HorizontalOptions="FillAndExpand"/>
+                            <VerticalStackLayout
+                                Padding="15"
+                                Spacing="8">
 
-                                <Button
-                                    Text="Delete"
-                                    Clicked="OnDeleteClicked"
-                                    HorizontalOptions="FillAndExpand"/>
+                                <Label
+                                    Text="{Binding Opportunity.Title}"
+                                    FontSize="22"
+                                    FontAttributes="Bold" />
 
-                            </HorizontalStackLayout>
+                                <Label
+                                    Text="{Binding Opportunity.Category,
+                                           StringFormat='Category: {0}'}"
+                                    FontSize="15" />
+
+                                <Label
+                                    Text="{Binding Opportunity.Date,
+                                           StringFormat='Date: {0:dd MMMM yyyy}'}"
+                                    FontSize="15" />
+
+                                <Label
+                                    Text="{Binding Opportunity.Time,
+                                           StringFormat='Time: {0}'}"
+                                    FontSize="15" />
+
+                                <Label
+                                    Text="{Binding Opportunity.Location,
+                                           StringFormat='Location: {0}'}"
+                                    FontSize="15" />
+
+
+                                <!-- Divider -->
+
+                                <BoxView
+                                    HeightRequest="1"
+                                    Margin="0,8" />
+
+
+                                <!-- Registration Details -->
+
+                                <Label
+                                    Text="Registration Details"
+                                    FontSize="19"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    Text="{Binding Registration.PreferredName,
+                                           StringFormat='Name: {0}'}" />
+
+                                <Label
+                                    Text="{Binding Registration.ContactDetail,
+                                           StringFormat='Contact: {0}'}" />
+
+                                <Label
+                                    Text="{Binding Registration.Availability,
+                                           StringFormat='Availability: {0}'}" />
+
+                                <Label
+                                    Text="{Binding Registration.Notes,
+                                           StringFormat='Notes: {0}'}" />
+
+                                <Label
+                                    Text="{Binding Registration.RegistrationDate,
+                                           StringFormat='Registered: {0:dd MMMM yyyy}'}" />
+
+
+                                <!-- Buttons -->
+
+                                <HorizontalStackLayout
+                                    Spacing="10"
+                                    Margin="0,10,0,0">
+
+                                    <Button
+                                        Text="Edit"
+                                        Clicked="OnEditClicked"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                    <Button
+                                        Text="Delete"
+                                        Clicked="OnDeleteClicked"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
 
                         </VerticalStackLayout>
 

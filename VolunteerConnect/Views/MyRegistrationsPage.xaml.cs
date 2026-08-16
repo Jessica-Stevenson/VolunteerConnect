@@ -40,14 +40,14 @@ public partial class MyRegistrationsPage : ContentPage
             var opportunity = await _database.GetOpportunityAsync(
                 registration.OpportunityId);
 
-            string opportunityTitle = opportunity?.Title
-                                      ?? "Unknown Opportunity";
+            if (opportunity == null)
+                continue;
 
             Registrations.Add(
                 new RegistrationDisplayItem
                 {
                     Registration = registration,
-                    OpportunityTitle = opportunityTitle
+                    Opportunity = opportunity
                 });
         }
     }
@@ -75,7 +75,7 @@ public partial class MyRegistrationsPage : ContentPage
 
         bool confirm = await DisplayAlert(
             "Delete Registration",
-            $"Are you sure you want to delete your registration for {item.OpportunityTitle}?",
+            $"Are you sure you want to delete your registration for {item.Opportunity.Title}?",
             "Delete",
             "Cancel");
 
@@ -102,5 +102,5 @@ public class RegistrationDisplayItem
 {
     public VolunteerRegistration Registration { get; set; } = new();
 
-    public string OpportunityTitle { get; set; } = string.Empty;
+    public VolunteerOpportunity Opportunity { get; set; } = new();
 }
