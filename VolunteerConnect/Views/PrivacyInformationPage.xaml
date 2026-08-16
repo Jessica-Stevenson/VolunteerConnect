@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VolunteerConnect.Views.PrivacyInformationPage"
-             Title="PrivacyInformationPage">
-</Window>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VolunteerConnect.Views.PrivacyInformationPage"
+    Title="Privacy Information">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+
+            <Label
+                Text="Privacy Information"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="VolunteerConnect is a prototype volunteer registration application. This page explains what information is collected and how it is handled."
+                FontSize="16"
+                LineBreakMode="WordWrap" />
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="What information is collected?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="When you register your interest in a volunteer opportunity, the application may collect your preferred name, contact details, availability, notes, consent confirmation, the opportunity you registered for, and the date of registration." 
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Why is this information collected?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="This information is collected so that your volunteer registration can be recorded and associated with the opportunity you selected. It allows the prototype to demonstrate registration management and help organise volunteer participation."
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="How is the information used?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="The information is used only within the VolunteerConnect prototype to display and manage your registrations. It is not intended to be used for advertising, profiling, or other unrelated purposes."
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="Where is the information stored?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="The prototype stores registration and opportunity information locally on the device using a SQLite database. The database is stored in the application's local data directory."
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="How can information be corrected?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="If registration information is incorrect, you can open the relevant registration and update the information through the application's registration management features."
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="How can information be deleted?"
+                    FontSize="20"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="A registration can be deleted through the application's registration management features. Deleting a registration removes that registration from the local database."
+                    FontSize="16"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+            <Border
+                Padding="15"
+                StrokeShape="RoundRectangle 10">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="Important"
+                        FontSize="20"
+                        FontAttributes="Bold" />
+
+                    <Label
+                        Text="VolunteerConnect is a prototype. Data is stored locally on the device and is not intended to represent a production cloud-based volunteer management system."
+                        FontSize="16"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
